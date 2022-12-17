@@ -14,9 +14,7 @@ const setupAndStartServer=async ()=>{
     app.use(bodyParser.urlencoded({extended:true}));
     app.listen(PORT,()=>{
         console.log(`Server started at ${PORT}`);
-        const repo=new CityRepository();
-        // console.log(repo.createCity({name:"Agra"}));
-        repo.deleteCity({cityId:1});
+        console.log();
     })
 }
 setupAndStartServer();
