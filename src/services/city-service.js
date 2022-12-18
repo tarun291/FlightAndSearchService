@@ -8,19 +8,19 @@ class CityService {
     }
     async createCity(data) {
         try {
-            const city = await this.cityRepository.createCity(data);
+            const city = await this.cityRepository.createCity({name:data.name});
             return city;
         } catch (error) {
-            console.log("Something went wrong in Servoce layer");
-            throw ({ error });
+            console.log("Something went wrong in Service layer");
+            throw { error };
         }
     }
     async deleteCity(cityId) {
         try {
             const response = this.cityRepository.deleteCity(cityId);
         } catch (error) {
-            console.log("Something went wrong in Servoce layer");
-            throw ({ error });
+            console.log("Something went wrong in Service layer");
+            throw { error };
         }
     }
     async updateCity(cityId, data) {
@@ -28,8 +28,8 @@ class CityService {
             const city = await this.cityRepository.updateCity(cityId, data);
             return city;
         } catch (error) {
-            console.log("Something went wrong in Servoce layer");
-            throw ({ error });
+            console.log("Something went wrong in Service layer");
+            throw { error };
         }
     }
     async getCity(cityId) {
@@ -37,8 +37,8 @@ class CityService {
             const city = await this.cityRepository.getCity(cityId);
             return city;
         } catch (error) {
-            console.log("Something went wrong in Servoce layer");
-            throw ({ error });
+            console.log("Something went wrong in Service layer");
+            throw { error };
         }
     }
 }

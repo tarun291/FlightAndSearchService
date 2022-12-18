@@ -22,6 +22,7 @@ const create = async (req, res) => {
             data:{},
             sucess:false,
             message:'Not able to create a city',
+            err:error
         })
     }
 }
@@ -54,7 +55,7 @@ const get = async (req, res) => {
             data:response,
             sucess:true,
             message:'Successfully fetched a city',
-            err:{},
+            err:error
         })
     }catch(error){
         console.log(error);
