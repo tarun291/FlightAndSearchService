@@ -55,7 +55,7 @@ const get = async (req, res) => {
             data:response,
             sucess:true,
             message:'Successfully fetched a city',
-            err:error
+            err:{}
         })
     }catch(error){
         console.log(error);

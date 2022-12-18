@@ -1,3 +1,5 @@
+const { Op } = require('sequelize');
+
 const { City } = require('../models/index')
 
 
@@ -15,6 +17,7 @@ class CityRepository {
     }
 
     async deleteCity(cityId) {
+        console.log(cityId);
         try {
             await City.destroy({
                 where: {
@@ -44,7 +47,7 @@ class CityRepository {
 
     async getCity(cityId) {
         try {
-            const city = await findByPk(cityId);
+            const city = await City.findByPk(cityId);
             return city;
         } catch (error) {
             console.log("Something went wrong in Repository Layer");
