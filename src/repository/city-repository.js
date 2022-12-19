@@ -33,11 +33,17 @@ class CityRepository {
 
     async updateCity(cityId, data) {  //{name:"Delhi"} data is an object form here
         try {
-            const city = await City.update(data, {
+            // below approach also work but will not return updated obkject
+            // If you are using PG sequal then returning true can be used, else not
+            /* const city = await City.update(data, {
                 where: {
                     id: cityId
-                }
-            })
+                },
+             })*/
+            /* This approach will return apdated objct also in MySQL*/
+            const city = await City.findByPk(cityId);
+            city.name = data.name;
+            await city.save();
             return city;
         } catch (error) {
             console.log("Something went wrong in Repository Layer");
