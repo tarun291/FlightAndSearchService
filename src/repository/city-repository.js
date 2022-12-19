@@ -60,9 +60,21 @@ class CityRepository {
             throw { error };
         }
     }
-    async getAllCities(){
+    async getAllCities(filter) { // filter can be a empty  also
         try {
-            const cities=await City.findAll();
+            if (filter.name) {
+                console.log(filter.name)
+                const cities = await City.findAll({
+                    where: {
+                        name: {
+                            [Op.startsWith]: filter.name
+                        }
+                    }
+                })
+                // console.log(cities);
+                return cities;
+            }
+            const cities = await City.findAll();
             return cities;
         } catch (error) {
             console.log("Something went wrong in Repository Layer");
