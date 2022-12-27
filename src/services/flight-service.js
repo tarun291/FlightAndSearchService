@@ -1,6 +1,6 @@
 const { FlightRepository, AirplaneRepository } = require('../repository/index');
 
-const {compareTime}=require('../utils/helper');
+const { compareTime } = require('../utils/helper');
 
 class FlightService {
     constructor() {
@@ -10,11 +10,11 @@ class FlightService {
     async createFlight(data) {
         try {
             // const airplaneRepository=new AirplaneRepository();
-            if(!compareTime(data.arrivalTime,data.departureTime)){
-                throw {error:"Arrival time can't be less then or smae as  departure time"};
+            if (!compareTime(data.arrivalTime, data.departureTime)) {
+                throw { error: "Arrival time can't be less then or smae as  departure time" };
             }
             const airplane = await this.airplaneRepository.getAirplane(data.airplaneId);
-            console.log(data);
+            // console.log(data);
             const flight = await this.flightRepository.createFlight({
                 ...data,
                 totalSeats: airplane.capacity
@@ -25,11 +25,17 @@ class FlightService {
             throw { error };
         }
     }
-    async getFlightData(){
-        // todo
+    async getAllFlightData(data) {
+        try {
+            const flights = await this.flightRepository.getAllFlights(data);
+            return flights;
+        } catch (error) {
+            console.log("Something went wrong in service layer");
+            throw { error };
+        }
     }
 }
-module.exports=FlightService;
+module.exports = FlightService;
 /*
 flightNumber
 airplaneId

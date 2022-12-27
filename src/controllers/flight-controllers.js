@@ -1,6 +1,7 @@
+
 const { FlightService } = require('../services/index');
 
-const flightService = new FlightService();
+const flightService=new FlightService();
 
 const create = async (req, res) => {
     try {
@@ -22,8 +23,30 @@ const create = async (req, res) => {
     }
 }
 
+const getAll=async(req,res)=>{
+    try {
+        console.log(req.query);
+        const responce=await flightService.getAllFlightData(req.query);
+        // console.log(req.query.params);
+        return res.status(200).json({
+            data:responce,
+            success:true,
+            err:{},
+            message:"Successfully fetched flight",
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            data: {},
+            success: false,
+            message: "Not able to create a flight",
+            err: error           
+        })
+    }
+}
 
 
 module.exports = {
-    create
+    create,
+    getAll
 }
