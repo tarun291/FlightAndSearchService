@@ -1,11 +1,20 @@
 
 const { FlightService } = require('../services/index');
 
-const flightService=new FlightService();
+const flightService = new FlightService();
 
 const create = async (req, res) => {
     try {
-        const flight = await flightService.createFlight(req.body);
+        const flightRequestData = {
+            flightNumber: req.body.flightNumber,
+            airplaneId: req.body.airplaneId,
+            departureId: req.body.departureId,
+            arrivalAirportId: req.body.arrivalAirportId,
+            arrivalTime: req.body.arrivalTime,
+            departureTime: req.body.departureTime,
+            price: req.body.price
+        }
+        const flight = await flightService.createFlight(flightRequestData);
         return res.status(201).json({
             data: flight,
             sucess: true,
@@ -23,16 +32,16 @@ const create = async (req, res) => {
     }
 }
 
-const getAll=async(req,res)=>{
+const getAll = async (req, res) => {
     try {
         console.log(req.query);
-        const responce=await flightService.getAllFlightData(req.query);
+        const responce = await flightService.getAllFlightData(req.query);
         // console.log(req.query.params);
         return res.status(200).json({
-            data:responce,
-            success:true,
-            err:{},
-            message:"Successfully fetched flight",
+            data: responce,
+            success: true,
+            err: {},
+            message: "Successfully fetched flight",
         })
     } catch (error) {
         console.log(error);
@@ -40,7 +49,7 @@ const getAll=async(req,res)=>{
             data: {},
             success: false,
             message: "Not able to create a flight",
-            err: error           
+            err: error
         })
     }
 }
