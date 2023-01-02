@@ -1,19 +1,19 @@
-const express=require('express');
+const express = require('express');
 
-const CityController=require('../../controllers/city-controller');
+const CityController = require('../../controllers/city-controller');
+const FlightController = require('../../controllers/flight-controllers')
+const AirportController = require('../../controllers/airport-controller');
+const router = express.Router();
 
-const FlightController=require('../../controllers/flight-controllers');
+router.post('/city', CityController.create);
+router.delete('/city/:id', CityController.destroy);
+router.get('/city/:id', CityController.get);
+router.get('/city', CityController.getAll);
+router.patch('/city/:id', CityController.update);
 
-const router=express.Router();
+router.post('/flights', FlightController.create);
+router.get('/flights', FlightController.getAll);
 
-router.post('/city',CityController.create);
-router.delete('/city/:id',CityController.destroy);
-router.get('/city/:id',CityController.get);
-router.get('/city',CityController.getAll);
-router.patch('/city/:id',CityController.update);
+router.post('/airports', AirportController.create);
 
-router.post('/flights',FlightController.create);
-
-router.get('/flights',FlightController.getAll);
-
-module.exports=router;
+module.exports = router;
