@@ -1,7 +1,7 @@
 
 const { FlightService } = require('../services/index');
 
-const {SuccessCodes}=require('../utils/error-codes');
+const { SuccessCodes } = require('../utils/error-codes');
 
 const flightService = new FlightService();
 
@@ -56,8 +56,28 @@ const getAll = async (req, res) => {
     }
 }
 
+const get = async (req, res) => {
+    try {
+        const responce = await flightService.getFlight(req.params.id);
+        return res.status(SuccessCodes.OK).json({
+            data: responce,
+            success: true,
+            err: {},
+            message: "Successfully fetched flight",
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            data: {},
+            success: false,
+            message: "Not able to fetched  a flight",
+            err: error
+        })
+    }
+}
 
 module.exports = {
     create,
-    getAll
+    getAll,
+    get
 }
