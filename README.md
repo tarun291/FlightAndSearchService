@@ -4,9 +4,12 @@ This micro-service mainly focuses on creation, deletion, updation and fetching a
 
 Features:
 
--Create, Read, Update and Delete cities (For Admins)
--Create, Read, Update and Delete Airports for a particular city (For Admins)
--Read Flights (For customers as well as for Admins) based on certain filters. (filters are  not mandatory)
+- Create, Read, Update and Delete cities (For Admins)
+
+- Create, Read, Update and Delete Airports for a particular city (For Admins)
+
+- Read Flights (For customers as well as for Admins) based on certain filters. (filters are  not mandatory)
+
 -Create, Update and Delete Flights (For Admins)
    ## DB Design
     - Airplane Table
